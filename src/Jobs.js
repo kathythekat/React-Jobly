@@ -1,6 +1,6 @@
 function Jobs() {
   return (
-    <div></div>
+    <div>Jobs</div>
     )
 
 }
