@@ -1,8 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
-import {BrowserRouter, Route} from "react-router-dom"
-import Routes from "./Routes"
-import NavBar from "./NavBar"
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { BrowserRouter, Route } from "react-router-dom";
+import Routes from "./Routes";
+import NavBar from "./NavBar";
 
 function App() {
   return (
