@@ -5,28 +5,24 @@ import JobCard from "./JobCard";
 
 function CompanyDetail() {
   const { handle } = useParams();
-  const [isFetching, setIsFetching] = useState(false);
-  const companyJobs = useRef();
+  const [companyJobs, setCompanyJobs] = useState([]) 
 
   useEffect(() => {
     async function getCompany() {
-      if (!companyJobs.current) setIsFetching(true);
       const companyRes = await JoblyAPI.getCompany(handle);
-      console.log("companyJobs RES", companyRes);
-      companyJobs.current = companyRes.jobs;
+      setCompanyJobs(companyRes.jobs)
     }
-    if (isFetching) getCompany();
-  }, [isFetching]);
+    getCompany();
+  }, []);
 
-  console.log("COMPANY JOBS", companyJobs.current);
+  console.log("Companyjobs state", companyJobs)
+
   return (
-    isFetching && (
       <div>
-        {companyJobs.current.map((job) => (
+        {companyJobs.map((job) => (
           <JobCard job={job} />
         ))}
       </div>
-    )
   );
 }
 
