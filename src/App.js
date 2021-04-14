@@ -14,7 +14,7 @@ function App() {
     username: "",
     firstName: "",
   };
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem("userToken") || null);
   const [currentUser, setCurrentUser] = useState(initialUser);
 
   async function signUp(userData) {
@@ -39,12 +39,23 @@ function App() {
     setToken(resp);
   }
 
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem("userToken", token);
+    } else {
+      localStorage.clear();
+    }
+  }, [token])
+
+
   console.log("current user", currentUser);
   console.log("token", token);
+  console.log("localstorage!", localStorage.getItem("userToken"))
 
   function logout() {
     setToken(null);
   }
+
 
   return (
     <div className="App">
