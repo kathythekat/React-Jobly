@@ -8,11 +8,13 @@ import axios from "axios";
 import JoblyApi from "./JoblyAPI";
 
 function App() {
-  const [token, setToken] = useState(null);
-  const [currentUser, setCurrentUser] = useState({
+
+  let initialUser = {
     username: "",
     firstName: "",
-  });
+  }
+  const [token, setToken] = useState(null);
+  const [currentUser, setCurrentUser] = useState(initialUser);
 
   async function signUp(userData) {
     const resp = await JoblyApi.register(userData);
@@ -22,20 +24,28 @@ function App() {
   }
 
   useEffect(() => {
-    if (currentUser.username) signUp();
+    async function getUserInfo() {
+      const resp = await JoblyApi.getUser(currentUser.username);
+      setCurrentUser(user => resp)
+    }
   }, [token]);
 
-  function loginUser(userData) {
-    //set token
-    //keep track of currentUser
+  async function loginUser(userData) {
+    const resp = await JoblyApi.login(userData);
+    const { username, firstName } = userData;
+    setToken(resp);
+    setCurrentUser((currentUser) => ({ username, firstName }));
   }
 
-  console.log("current user", currentUser, "token:", token);
+  function logout() {
+    setToken(null)
+    setCurrentUser(user => initialUser)
+  }
 
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar />
+        <NavBar token={token} logout={logout}/>
         <Routes signUp={signUp} loginUser={loginUser} />
       </BrowserRouter>
     </div>
