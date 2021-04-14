@@ -5,24 +5,24 @@ import JobCard from "./JobCard";
 
 function CompanyDetail() {
   const { handle } = useParams();
-  const [companyJobs, setCompanyJobs] = useState([]) 
+  const [companyJobs, setCompanyJobs] = useState([]);
 
   useEffect(() => {
     async function getCompany() {
       const companyRes = await JoblyAPI.getCompany(handle);
-      setCompanyJobs(companyRes.jobs)
+      setCompanyJobs(companyRes.jobs);
     }
     getCompany();
   }, []);
 
-  if (!companyJobs.length) return (<div>Loading....</div>)
+  if (!companyJobs.length) return <div>Loading....</div>;
 
   return (
-      <div>
-        {companyJobs.map((job) => (
-          <JobCard job={job} />
-        ))}
-      </div>
+    <div>
+      {companyJobs.map((job) => (
+        <JobCard job={job} key={job.id} />
+      ))}
+    </div>
   );
 }
 

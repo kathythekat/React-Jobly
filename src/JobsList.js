@@ -36,7 +36,7 @@ function JobsList() {
       <h1>Jobs</h1>
       <SearchBar addSearchTerm={addSearchTerm} />
       {jobs.map((job) => (
-        <JobCard job={job} />
+        <JobCard key={job.id} job={job} />
       ))}
     </div>
   );

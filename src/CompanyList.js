@@ -35,7 +35,7 @@ function CompanyList() {
       <h1>Companies</h1>
       <SearchBar addSearchTerm={addSearchTerm} />
       {companies.map((company) => (
-        <div className="col-sm-5 mt-3">
+        <div className="col-sm-5 mt-3" key={company.handle}>
           <CompanyCard company={company} />
         </div>
       ))}
