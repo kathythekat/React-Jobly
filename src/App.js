@@ -12,30 +12,31 @@ function App() {
   const [currentUser, setCurrentUser] = useState({
     username: "",
     firstName: "",
-    lastName: "",
-    isAdmin: false,
-    email: "",
   });
 
-  function signUp(userData) {
-    setCurrentUser(userData);
+  async function signUp(userData) {
+    const resp = await JoblyApi.register(userData);
+    const { username, firstName } = userData;
+    setToken(resp);
+    setCurrentUser((currentUser) => ({ username, firstName }));
   }
 
   useEffect(() => {
-    async function registerUser() {
-      const resp = await JoblyApi.register(currentUser);
-      setToken(resp.token);
-    }
-    if (currentUser.username) registerUser();
-  }, [currentUser]);
+    if (currentUser.username) signUp();
+  }, [token]);
 
-  console.log(currentUser);
+  function loginUser(userData) {
+    //set token
+    //keep track of currentUser
+  }
+
+  console.log("current user", currentUser, "token:", token);
 
   return (
     <div className="App">
       <BrowserRouter>
         <NavBar />
-        <Routes signUp={signUp} />
+        <Routes signUp={signUp} loginUser={loginUser} />
       </BrowserRouter>
     </div>
   );
