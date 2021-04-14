@@ -7,7 +7,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 import Profile from "./Profile";
 
-function Routes() {
+function Routes({ signUp, currentUser }) {
   return (
     <Switch>
       <Route exact path="/">
@@ -26,7 +26,7 @@ function Routes() {
         <Login />
       </Route>
       <Route exact path="/signup">
-        <Signup />
+        <Signup signUp={signUp} />
       </Route>
       <Route exact path="/profile">
         <Profile />
