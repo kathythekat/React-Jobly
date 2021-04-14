@@ -6,13 +6,14 @@ import Routes from "./Routes";
 import NavBar from "./NavBar";
 import axios from "axios";
 import JoblyApi from "./JoblyAPI";
+import UserContext from "./userContext";
+import jwt from "jsonwebtoken";
 
 function App() {
-
   let initialUser = {
     username: "",
     firstName: "",
-  }
+  };
   const [token, setToken] = useState(null);
   const [currentUser, setCurrentUser] = useState(initialUser);
 
@@ -20,33 +21,38 @@ function App() {
     const resp = await JoblyApi.register(userData);
     const { username, firstName } = userData;
     setToken(resp);
-    setCurrentUser((currentUser) => ({ username, firstName }));
   }
 
   useEffect(() => {
     async function getUserInfo() {
-      const resp = await JoblyApi.getUser(currentUser.username);
-      setCurrentUser(user => resp)
+      //jwt decode token
+      JoblyApi.token = token;
+      const resp = await JoblyApi.getUser(jwt.decode(token).username);
+      setCurrentUser(resp);
     }
+    token ? getUserInfo() : setCurrentUser(initialUser);
   }, [token]);
 
   async function loginUser(userData) {
     const resp = await JoblyApi.login(userData);
     const { username, firstName } = userData;
     setToken(resp);
-    setCurrentUser((currentUser) => ({ username, firstName }));
   }
 
+  console.log("current user", currentUser);
+  console.log("token", token);
+
   function logout() {
-    setToken(null)
-    setCurrentUser(user => initialUser)
+    setToken(null);
   }
 
   return (
     <div className="App">
       <BrowserRouter>
-        <NavBar token={token} logout={logout}/>
-        <Routes signUp={signUp} loginUser={loginUser} />
+        <UserContext.Provider value={{ token, currentUser }}>
+          <NavBar logout={logout} />
+          <Routes signUp={signUp} loginUser={loginUser} />
+        </UserContext.Provider>
       </BrowserRouter>
     </div>
   );

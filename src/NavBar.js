@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
-import "./NavBar.css"
+import "./NavBar.css";
+import UserContext from "./userContext";
 
-function NavBar({ token, logout }) {
+function NavBar({ logout }) {
+  //also useContext for logout
+  const { token } = useContext(UserContext);
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -27,7 +31,7 @@ function NavBar({ token, logout }) {
                 </NavLink>
               </li>
               <li className="nav-item mr-4">
-                <NavLink to="/logout" className="nav-link disabled">
+                <NavLink onClick={logout} to="/logout" className="nav-link">
                   Logout
                 </NavLink>
               </li>

@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function Login({ loginUser }) {
-  const [formData, setFormData] = useState("");
+  const history = useHistory();
+  const [formData, setFormData] = useState({ username: "", password: "" });
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -11,16 +13,17 @@ function Login({ loginUser }) {
     }));
   }
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault();
-    loginUser(formData);
-    setFormData("");
+    await loginUser(formData);
+    setFormData({ username: "", password: "" });
+    history.push("/");
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
-        <label for="username">Username</label>
+        <label htmlFor="username">Username</label>
         <input
           onChange={handleChange}
           type="text"
@@ -33,7 +36,7 @@ function Login({ loginUser }) {
         />
       </div>
       <div className="form-group">
-        <label for="password">Password</label>
+        <label htmlFor="password">Password</label>
         <input
           onChange={handleChange}
           type="password"
