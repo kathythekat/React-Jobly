@@ -13,13 +13,13 @@ function JobCard({ job }) {
       <div className="card-body">
         <h5 className="card-title">{job.title}</h5>
         <p className="card-text">
-          {job.salary}
+        Salary: {job.salary}
         </p>
         <p className="card-text">
-          {job.equity}
+        Equity:{job.equity}
         </p>
         <button onClick={handleClick} className="btn btn-danger">
-          {!applied ? "APPLY" : "APPLIED"}
+           {!applied ? "APPLY" : "APPLIED"}
         </button>
       </div>
     </div>

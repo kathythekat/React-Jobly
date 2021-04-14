@@ -15,7 +15,7 @@ function CompanyDetail() {
     getCompany();
   }, []);
 
-  console.log("Companyjobs state", companyJobs)
+  if (!companyJobs.length) return (<div>Loading....</div>)
 
   return (
       <div>

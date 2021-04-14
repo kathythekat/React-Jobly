@@ -39,8 +39,10 @@ class JoblyApi {
     return res.company;
   }
 
-  static async getAllCompanies() {
-    let res = await this.request("companies");
+  static async getAllCompanies(searchTermString="") {
+    let res  = searchTermString 
+    ? await this.request(`companies?name=${searchTermString}`)
+    : await this.request("companies");
     return res.companies;
   }
 
@@ -48,6 +50,7 @@ class JoblyApi {
     let res = await this.request("jobs");
     return res.jobs;
   }
+  //make similar change as getAllCompanies to getAllJobs
 
   static async getJob(id) {
     let res = await this.request(`jobs/${id}`);
