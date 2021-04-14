@@ -9,7 +9,7 @@ function JobCard({ job }) {
     e.target.style.opacity = ".5";
   }
   return (
-    <div className="card w-75">
+    <div className="card w-75 mb-3">
       <div className="card-body">
         <h5 className="card-title">{title}</h5>
         <h5 className="card-title">{companyName}</h5>

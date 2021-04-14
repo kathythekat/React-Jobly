@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function SearchBar({addSearchTerm}) {
+function SearchBar({ addSearchTerm }) {
   const [formData, setFormData] = useState("");
 
   function handleChange(e) {
@@ -9,13 +9,13 @@ function SearchBar({addSearchTerm}) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    addSearchTerm(formData)
-    setFormData("")
+    addSearchTerm(formData);
+    setFormData("");
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
+    <form className="d-flex" onSubmit={handleSubmit}>
+      <div className="form-group mb-2 col-md-5">
         <input
           type="text"
           className="form-control"
@@ -26,9 +26,11 @@ function SearchBar({addSearchTerm}) {
           onChange={handleChange}
         />
       </div>
-      <button type="submit" className="btn btn-primary" >
-        Search
-      </button>
+      <div className="d-inline-flex">
+        <button type="submit" className="btn btn-primary mb-2">
+          Search
+        </button>
+      </div>
     </form>
   );
 }

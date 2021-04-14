@@ -29,10 +29,11 @@ function JobsList() {
     if (searchTerm) getJobsList();
   }, [searchTerm]);
 
-  // if (!jobs.length) return <div>Loading....</div>;
+  if (!jobs.length) return <div>Loading....</div>;
 
   return (
     <div>
+      <h1>Jobs</h1>
       <SearchBar addSearchTerm={addSearchTerm} />
       {jobs.map((job) => (
         <JobCard job={job} />
