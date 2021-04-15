@@ -5,7 +5,7 @@ import UserContext from "./userContext";
 function Profile() {
   const { currentUser, token, updateUser } = useContext(UserContext);
   const history = useHistory();
-  const { firstName, lastName, email, username } = currentUser;
+  const { firstName, lastName, email } = currentUser;
   const [formData, setFormData] = useState({
     firstName,
     lastName,

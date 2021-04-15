@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import JoblyAPI from "./JoblyAPI";
 import JobCard from "./JobCard";

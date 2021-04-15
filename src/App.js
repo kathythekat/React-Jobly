@@ -1,10 +1,9 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Routes from "./Routes";
 import NavBar from "./NavBar";
-import axios from "axios";
 import JoblyApi from "./JoblyAPI";
 import UserContext from "./userContext";
 import jwt from "jsonwebtoken";
@@ -19,13 +18,11 @@ function App() {
 
   async function signUp(userData) {
     const resp = await JoblyApi.register(userData);
-    const { username, firstName } = userData;
     setToken(resp);
   }
 
   useEffect(() => {
     async function getUserInfo() {
-      //jwt decode token
       JoblyApi.token = token;
       const resp = await JoblyApi.getUser(jwt.decode(token).username);
       setCurrentUser(resp);
@@ -35,7 +32,6 @@ function App() {
 
   async function loginUser(userData) {
     const resp = await JoblyApi.login(userData);
-    const { username, firstName } = userData;
     setToken(resp);
   }
 
@@ -60,7 +56,7 @@ function App() {
     }));
   }
 
-  console.log("current user", currentUser);
+  // console.log("current user", currentUser);
   // console.log("token", token);
   // console.log("localstorage!", localStorage.getItem("userToken"));
 
@@ -75,7 +71,11 @@ function App() {
           value={{ token, currentUser, updateUser, applyForJob }}
         >
           <NavBar logout={logout} />
-          <Routes signUp={signUp} loginUser={loginUser} />
+          <Routes
+            signUp={signUp}
+            loginUser={loginUser}
+            isAuthenticated={Boolean(token)}
+          />
         </UserContext.Provider>
       </BrowserRouter>
     </div>

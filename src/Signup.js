@@ -1,10 +1,16 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import JoblyApi from "./JoblyAPI";
 
 function Signup({ signUp }) {
+  const initialFormData = {
+    username: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+  };
   const history = useHistory();
-  const [formData, setFormData] = useState("");
+  const [formData, setFormData] = useState(initialFormData);
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -17,7 +23,6 @@ function Signup({ signUp }) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     await signUp(formData);
-    setFormData("");
     history.push("/");
   }
 

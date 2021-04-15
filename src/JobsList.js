@@ -8,7 +8,7 @@ import { Redirect } from "react-router";
 function JobsList() {
   const [jobs, setJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const { token } = useContext(UserContext);
+  const { token, currentUser } = useContext(UserContext);
 
   useEffect(() => {
     async function getJobsList() {
@@ -31,8 +31,6 @@ function JobsList() {
   }, [searchTerm]);
 
   if (!jobs.length) return <div>Loading....</div>;
-
-  console.log("JOBS", jobs);
 
   return (
     <div className="m-3">

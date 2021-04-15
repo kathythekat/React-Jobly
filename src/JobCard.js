@@ -1,37 +1,23 @@
-import { useContext, useEffect, useState } from "react";
-import JoblyApi from "./JoblyAPI";
+import { useRef, useContext, useEffect, useState } from "react";
 import UserContext from "./userContext";
 
 function JobCard({ job }) {
   const { currentUser, applyForJob } = useContext(UserContext);
   const { id, title, salary, equity, companyName } = job;
   const [applied, setApplied] = useState(false);
+  const isInitialAppliedRef = useRef(false);
 
-  // useEffect(() => {
-  //   if (applied) {
-  //     localStorage.setItem("appliedStatus", true);
-  //   }
-  // }, [applied]);
+  useEffect(() => {
+    if (!isInitialAppliedRef.current && currentUser.applications) {
+      isInitialAppliedRef.current = true;
+      setApplied(currentUser.applications.includes(id));
+    }
+  }, [currentUser]);
 
   async function handleClick(e) {
     setApplied(true);
     await applyForJob(id);
-    if (applied) {
-      e.target.style.opacity = ".5";
-    }
   }
-  const appJobIds = currentUser.applications;
-  // console.log("ARRAY OF JOB IDS", appJobIds);
-  // for (let ids of appJobIds) {
-  //   if (id === ids) {
-  //     localStorage.setItem("appliedStatus", true);
-  //   }
-  // }
-
-  console.log(
-    "LOCAL STORAGE IN JOB CARD",
-    localStorage.getItem("appliedStatus")
-  );
 
   return (
     <div className="card w-75 mb-3">

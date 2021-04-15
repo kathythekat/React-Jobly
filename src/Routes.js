@@ -10,20 +10,20 @@ import { useContext } from "react";
 import UserContext from "./userContext";
 
 function Routes({ signUp, loginUser }) {
-  const token = useContext(UserContext);
+  const { token } = useContext(UserContext);
   return (
     <Switch>
       <Route exact path="/">
         <Home />
       </Route>
       <Route exact path="/companies">
-        <CompanyList />
+        {token && <CompanyList />}
       </Route>
       <Route exact path="/companies/:handle">
-        <CompanyDetail />
+        {token && <CompanyDetail />}
       </Route>
       <Route exact path="/jobs">
-        <JobsList />
+        {token && <JobsList />}
       </Route>
       <Route exact path="/login">
         <Login loginUser={loginUser} />
@@ -32,7 +32,7 @@ function Routes({ signUp, loginUser }) {
         <Signup signUp={signUp} />
       </Route>
       <Route exact path="/profile">
-        <Profile />
+        {token && <Profile />}
       </Route>
       <Redirect to="/" />
     </Switch>
