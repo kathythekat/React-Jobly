@@ -4,18 +4,12 @@ import UserContext from "./userContext";
 function JobCard({ job }) {
   const { currentUser, applyForJob } = useContext(UserContext);
   const { id, title, salary, equity, companyName } = job;
-  const [applied, setApplied] = useState(false);
-  const isInitialAppliedRef = useRef(false);
-
-  useEffect(() => {
-    if (!isInitialAppliedRef.current && currentUser.applications) {
-      isInitialAppliedRef.current = true;
-      setApplied(currentUser.applications.includes(id));
-    }
-  }, [currentUser]);
+  const isApplied =
+    !currentUser || !currentUser.applications
+      ? false
+      : currentUser.applications.includes(id);
 
   async function handleClick(e) {
-    setApplied(true);
     await applyForJob(id);
   }
 
@@ -26,12 +20,12 @@ function JobCard({ job }) {
         <h5 className="card-title">{companyName}</h5>
         <p className="card-text">Salary: {salary}</p>
         <p className="card-text">Equity:{equity}</p>
-        {!applied && (
+        {!isApplied && (
           <button onClick={handleClick} className="btn btn-danger">
             Apply
           </button>
         )}
-        {applied && <button className="btn btn-warning">APPLIED</button>}
+        {isApplied && <button className="btn btn-success">APPLIED</button>}
       </div>
     </div>
   );

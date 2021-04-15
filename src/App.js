@@ -8,6 +8,8 @@ import JoblyApi from "./JoblyAPI";
 import UserContext from "./userContext";
 import jwt from "jsonwebtoken";
 
+//if messages = true , show flash message
+
 function App() {
   let initialUser = {
     username: "",
@@ -49,14 +51,14 @@ function App() {
   }, [token]);
 
   async function applyForJob(id) {
-    const jobId = await JoblyApi.applyForJob(currentUser.username, {}, id);
+    const jobId = await JoblyApi.applyForJob(currentUser.username, id);
     setCurrentUser((currentUser) => ({
       ...currentUser,
       applications: [...currentUser.applications, jobId],
     }));
   }
 
-  // console.log("current user", currentUser);
+  console.log("current user", currentUser);
   // console.log("token", token);
   // console.log("localstorage!", localStorage.getItem("userToken"));
 

@@ -17,13 +17,13 @@ function Routes({ signUp, loginUser }) {
         <Home />
       </Route>
       <Route exact path="/companies">
-        {token && <CompanyList />}
+        {token ? <CompanyList /> : <Redirect to="/login" />}
       </Route>
       <Route exact path="/companies/:handle">
-        {token && <CompanyDetail />}
+        {token ? <CompanyDetail /> : <Redirect to="/login" />}
       </Route>
       <Route exact path="/jobs">
-        {token && <JobsList />}
+        {token ? <JobsList /> : <Redirect to="/login" />}
       </Route>
       <Route exact path="/login">
         <Login loginUser={loginUser} />
@@ -32,7 +32,7 @@ function Routes({ signUp, loginUser }) {
         <Signup signUp={signUp} />
       </Route>
       <Route exact path="/profile">
-        {token && <Profile />}
+        {token ? <Profile /> : <Redirect to="/login" />}
       </Route>
       <Redirect to="/" />
     </Switch>

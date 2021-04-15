@@ -35,18 +35,15 @@ function CompanyList() {
   console.log("Inside companies!", token.token);
   return (
     <div>
-      {token && (
-        <div className="m-3">
-          <h1>Companies</h1>
-          <SearchBar addSearchTerm={addSearchTerm} />
-          {companies.map((company) => (
-            <div className="col-sm-5 mt-3" key={company.handle}>
-              <CompanyCard company={company} />
-            </div>
-          ))}
-        </div>
-      )}
-      {!token && <Redirect to="/login" />}
+      <div className="m-3">
+        <h1>Companies</h1>
+        <SearchBar addSearchTerm={addSearchTerm} />
+        {companies.map((company) => (
+          <div className="col-sm-5 mt-3" key={company.handle}>
+            <CompanyCard company={company} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
