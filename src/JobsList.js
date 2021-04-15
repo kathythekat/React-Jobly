@@ -33,7 +33,7 @@ function JobsList() {
   if (!jobs.length) return <div>Loading....</div>;
 
   return (
-    <div>
+    <div className="m-3">
       {token && (
         <div>
           <h1>Jobs</h1>

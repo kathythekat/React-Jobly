@@ -18,7 +18,6 @@ function Profile() {
       ...formData,
       [name]: value,
     }));
-    console.log(formData);
   }
 
   async function handleSubmit(evt) {
@@ -32,61 +31,65 @@ function Profile() {
   console.log("localstorage PROFILE!", localStorage.getItem("userToken"));
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="username">Username</label>
-        <p>{currentUser.username}</p>
-      </div>
-      <div className="form-group">
-        <label htmlFor="firstName">First Name</label>
-        <input
-          onChange={handleChange}
-          type="text"
-          className="form-control"
-          id="firstName"
-          name="firstName"
-          value={formData.firstName || currentUser.firstName}
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="lastName">Last Name</label>
-        <input
-          onChange={handleChange}
-          type="text"
-          className="form-control"
-          id="lastName"
-          name="lastName"
-          value={formData.lastName || currentUser.lastName}
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="email">Email</label>
-        <input
-          onChange={handleChange}
-          type="text"
-          className="form-control"
-          id="email"
-          name="email"
-          value={formData.email || currentUser.email}
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="password">Confirm Password</label>
-        <input
-          onChange={handleChange}
-          type="password"
-          className="form-control"
-          id="password"
-          name="password"
-          value={formData.password}
-          placeholder="Password"
-        />
-      </div>
+    <div className="container mt-3">
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="username">
+            <b>Username</b>
+          </label>
+          <p>{currentUser.username}</p>
+        </div>
+        <div className="form-group">
+          <label htmlFor="firstName">First Name</label>
+          <input
+            onChange={handleChange}
+            type="text"
+            className="form-control"
+            id="firstName"
+            name="firstName"
+            value={formData.firstName || currentUser.firstName}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            onChange={handleChange}
+            type="text"
+            className="form-control"
+            id="lastName"
+            name="lastName"
+            value={formData.lastName || currentUser.lastName}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            onChange={handleChange}
+            type="text"
+            className="form-control"
+            id="email"
+            name="email"
+            value={formData.email || currentUser.email}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Confirm Password</label>
+          <input
+            onChange={handleChange}
+            type="password"
+            className="form-control"
+            id="password"
+            name="password"
+            value={formData.password}
+            placeholder="Password"
+          />
+        </div>
 
-      <button type="submit" className="btn btn-primary">
-        Submit
-      </button>
-    </form>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+      </form>
+    </div>
   );
 }
 

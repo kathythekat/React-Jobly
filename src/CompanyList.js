@@ -36,7 +36,7 @@ function CompanyList() {
   return (
     <div>
       {token && (
-        <div>
+        <div className="m-3">
           <h1>Companies</h1>
           <SearchBar addSearchTerm={addSearchTerm} />
           {companies.map((company) => (

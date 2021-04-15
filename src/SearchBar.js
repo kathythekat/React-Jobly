@@ -14,7 +14,7 @@ function SearchBar({ addSearchTerm }) {
   }
 
   return (
-    <form className="d-flex" onSubmit={handleSubmit}>
+    <form className="my-2 d-flex" onSubmit={handleSubmit}>
       <div className="form-group mb-2 col-md-5">
         <input
           type="text"
@@ -26,7 +26,7 @@ function SearchBar({ addSearchTerm }) {
           onChange={handleChange}
         />
       </div>
-      <div className="d-inline-flex">
+      <div>
         <button type="submit" className="btn btn-primary mb-2">
           Search
         </button>

@@ -8,7 +8,7 @@ function NavBar({ logout }) {
   const { token } = useContext(UserContext);
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-warning">
         <Link to="/" className="navbar-brand mr-auto">
           Jobly
         </Link>

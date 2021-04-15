@@ -9,11 +9,10 @@ function JobCard({ job }) {
 
   useEffect(() => {
     if (applied) applyForJob(id);
-    console.log("JOBCARD", currentUser);
   }, [applied]);
 
   function handleClick(e) {
-    setApplied(() => true);
+    setApplied(true);
     e.target.style.opacity = ".5";
   }
 
