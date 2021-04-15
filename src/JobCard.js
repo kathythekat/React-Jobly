@@ -1,13 +1,22 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import JoblyApi from "./JoblyAPI";
+import UserContext from "./userContext";
 
 function JobCard({ job }) {
-  const { title, salary, equity, companyName } = job;
+  const { currentUser, applyForJob } = useContext(UserContext);
+  const { id, title, salary, equity, companyName } = job;
   const [applied, setApplied] = useState(false);
+
+  useEffect(() => {
+    if (applied) applyForJob(id);
+    console.log("JOBCARD", currentUser);
+  }, [applied]);
 
   function handleClick(e) {
     setApplied(() => true);
     e.target.style.opacity = ".5";
   }
+
   return (
     <div className="card w-75 mb-3">
       <div className="card-body">

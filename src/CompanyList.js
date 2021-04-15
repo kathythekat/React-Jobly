@@ -1,11 +1,14 @@
 import JoblyApi from "./JoblyAPI";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CompanyCard from "./CompanyCard";
 import SearchBar from "./SearchBar";
+import UserContext from "./userContext";
+import { Redirect } from "react-router";
 
 function CompanyList() {
   const [companies, setCompanies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const { token } = useContext(UserContext);
 
   useEffect(() => {
     async function getCompanyList() {
@@ -29,16 +32,21 @@ function CompanyList() {
   }, [searchTerm]);
 
   if (!companies.length) return <div>Loading....</div>;
-
+  console.log("Inside companies!", token.token);
   return (
     <div>
-      <h1>Companies</h1>
-      <SearchBar addSearchTerm={addSearchTerm} />
-      {companies.map((company) => (
-        <div className="col-sm-5 mt-3" key={company.handle}>
-          <CompanyCard company={company} />
+      {token && (
+        <div>
+          <h1>Companies</h1>
+          <SearchBar addSearchTerm={addSearchTerm} />
+          {companies.map((company) => (
+            <div className="col-sm-5 mt-3" key={company.handle}>
+              <CompanyCard company={company} />
+            </div>
+          ))}
         </div>
-      ))}
+      )}
+      {!token && <Redirect to="/login" />}
     </div>
   );
 }

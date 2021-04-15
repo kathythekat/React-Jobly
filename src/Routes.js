@@ -6,8 +6,11 @@ import JobsList from "./JobsList";
 import Login from "./Login";
 import Signup from "./Signup";
 import Profile from "./Profile";
+import { useContext } from "react";
+import UserContext from "./userContext";
 
 function Routes({ signUp, loginUser }) {
+  const token = useContext(UserContext);
   return (
     <Switch>
       <Route exact path="/">

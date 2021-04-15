@@ -39,28 +39,41 @@ function App() {
     setToken(resp);
   }
 
+  async function updateUser(formUsername, userData) {
+    const resp = await JoblyApi.update(formUsername, userData);
+    setCurrentUser(resp);
+  }
+
   useEffect(() => {
     if (token) {
       localStorage.setItem("userToken", token);
     } else {
       localStorage.clear();
     }
-  }, [token])
+  }, [token]);
 
+  async function applyForJob(id) {
+    const jobId = await JoblyApi.applyForJob(currentUser.username, {}, id);
+    setCurrentUser((currentUser) => ({
+      ...currentUser,
+      applications: [...currentUser.applications, jobId],
+    }));
+  }
 
-  console.log("current user", currentUser);
-  console.log("token", token);
-  console.log("localstorage!", localStorage.getItem("userToken"))
+  // console.log("current user", currentUser);
+  // console.log("token", token);
+  // console.log("localstorage!", localStorage.getItem("userToken"))
 
   function logout() {
     setToken(null);
   }
 
-
   return (
     <div className="App">
       <BrowserRouter>
-        <UserContext.Provider value={{ token, currentUser }}>
+        <UserContext.Provider
+          value={{ token, currentUser, updateUser, applyForJob }}
+        >
           <NavBar logout={logout} />
           <Routes signUp={signUp} loginUser={loginUser} />
         </UserContext.Provider>

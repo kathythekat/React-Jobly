@@ -1,12 +1,14 @@
 import SearchBar from "./SearchBar";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import JoblyApi from "./JoblyAPI";
 import JobCard from "./JobCard";
+import UserContext from "./userContext";
+import { Redirect } from "react-router";
 
 function JobsList() {
   const [jobs, setJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  console.log(jobs);
+  const { token } = useContext(UserContext);
 
   useEffect(() => {
     async function getJobsList() {
@@ -23,7 +25,6 @@ function JobsList() {
   useEffect(() => {
     async function getJobsList() {
       const jobList = await JoblyApi.getAllJobs(searchTerm);
-      console.log("JOB LIST", jobList);
       setJobs(jobList);
     }
     if (searchTerm) getJobsList();
@@ -33,11 +34,16 @@ function JobsList() {
 
   return (
     <div>
-      <h1>Jobs</h1>
-      <SearchBar addSearchTerm={addSearchTerm} />
-      {jobs.map((job) => (
-        <JobCard key={job.id} job={job} />
-      ))}
+      {token && (
+        <div>
+          <h1>Jobs</h1>
+          <SearchBar addSearchTerm={addSearchTerm} />
+          {jobs.map((job) => (
+            <JobCard key={job.id} job={job} />
+          ))}
+        </div>
+      )}
+      {!token && <Redirect to="/login" />}
     </div>
   );
 }

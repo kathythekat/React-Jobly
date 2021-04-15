@@ -1,9 +1,11 @@
-import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useRef, useState } from "react";
+import { Redirect, useParams } from "react-router-dom";
 import JoblyAPI from "./JoblyAPI";
 import JobCard from "./JobCard";
+import UserContext from "./userContext";
 
 function CompanyDetail() {
+  const { token } = useContext(UserContext);
   const { handle } = useParams();
   const [companyJobs, setCompanyJobs] = useState([]);
 
@@ -19,9 +21,14 @@ function CompanyDetail() {
 
   return (
     <div>
-      {companyJobs.map((job) => (
-        <JobCard job={job} key={job.id} />
-      ))}
+      {token && (
+        <div>
+          {companyJobs.map((job) => (
+            <JobCard job={job} key={job.id} />
+          ))}
+        </div>
+      )}
+      {!token && <Redirect to="/login" />}
     </div>
   );
 }
