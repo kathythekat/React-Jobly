@@ -32,6 +32,8 @@ function JobsList() {
 
   if (!jobs.length) return <div>Loading....</div>;
 
+  console.log("JOBS", jobs);
+
   return (
     <div className="m-3">
       {token && (

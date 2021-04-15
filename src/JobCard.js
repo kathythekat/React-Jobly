@@ -7,14 +7,31 @@ function JobCard({ job }) {
   const { id, title, salary, equity, companyName } = job;
   const [applied, setApplied] = useState(false);
 
-  useEffect(() => {
-    if (applied) applyForJob(id);
-  }, [applied]);
+  // useEffect(() => {
+  //   if (applied) {
+  //     localStorage.setItem("appliedStatus", true);
+  //   }
+  // }, [applied]);
 
-  function handleClick(e) {
+  async function handleClick(e) {
     setApplied(true);
-    e.target.style.opacity = ".5";
+    await applyForJob(id);
+    if (applied) {
+      e.target.style.opacity = ".5";
+    }
   }
+  const appJobIds = currentUser.applications;
+  // console.log("ARRAY OF JOB IDS", appJobIds);
+  // for (let ids of appJobIds) {
+  //   if (id === ids) {
+  //     localStorage.setItem("appliedStatus", true);
+  //   }
+  // }
+
+  console.log(
+    "LOCAL STORAGE IN JOB CARD",
+    localStorage.getItem("appliedStatus")
+  );
 
   return (
     <div className="card w-75 mb-3">
@@ -23,9 +40,12 @@ function JobCard({ job }) {
         <h5 className="card-title">{companyName}</h5>
         <p className="card-text">Salary: {salary}</p>
         <p className="card-text">Equity:{equity}</p>
-        <button onClick={handleClick} className="btn btn-danger">
-          {!applied ? "APPLY" : "APPLIED"}
-        </button>
+        {!applied && (
+          <button onClick={handleClick} className="btn btn-danger">
+            Apply
+          </button>
+        )}
+        {applied && <button className="btn btn-warning">APPLIED</button>}
       </div>
     </div>
   );

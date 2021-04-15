@@ -62,7 +62,7 @@ function App() {
 
   console.log("current user", currentUser);
   // console.log("token", token);
-  // console.log("localstorage!", localStorage.getItem("userToken"))
+  // console.log("localstorage!", localStorage.getItem("userToken"));
 
   function logout() {
     setToken(null);
