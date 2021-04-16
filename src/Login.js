@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
+import RedAlert from "./RedAlert";
+import UserContext from "./userContext";
 
 function Login({ loginUser }) {
+  const { isInvalidLogin } = useContext(UserContext);
   const history = useHistory();
   const [formData, setFormData] = useState({ username: "", password: "" });
 
@@ -16,42 +19,44 @@ function Login({ loginUser }) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     await loginUser(formData);
-    setFormData({ username: "", password: "" });
     history.push("/");
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="username">Username</label>
-        <input
-          onChange={handleChange}
-          type="text"
-          className="form-control"
-          id="username"
-          aria-describedby="emailHelp"
-          name="username"
-          value={formData.username}
-          placeholder="Enter username"
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="password">Password</label>
-        <input
-          onChange={handleChange}
-          type="password"
-          className="form-control"
-          id="password"
-          name="password"
-          value={formData.password}
-          placeholder="Password"
-        />
-      </div>
+    <div>
+      {isInvalidLogin && <RedAlert />}
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="username">Username</label>
+          <input
+            onChange={handleChange}
+            type="text"
+            className="form-control"
+            id="username"
+            aria-describedby="emailHelp"
+            name="username"
+            value={formData.username}
+            placeholder="Enter username"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            onChange={handleChange}
+            type="password"
+            className="form-control"
+            id="password"
+            name="password"
+            value={formData.password}
+            placeholder="Password"
+          />
+        </div>
 
-      <button type="submit" className="btn btn-primary">
-        Submit
-      </button>
-    </form>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+      </form>
+    </div>
   );
 }
 

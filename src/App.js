@@ -8,15 +8,10 @@ import JoblyApi from "./JoblyAPI";
 import UserContext from "./userContext";
 import jwt from "jsonwebtoken";
 
-//if messages = true , show flash message
-
 function App() {
-  let initialUser = {
-    username: "",
-    firstName: "",
-  };
   const [token, setToken] = useState(localStorage.getItem("userToken") || null);
-  const [currentUser, setCurrentUser] = useState(initialUser);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isInvalidLogin, setIsInvalidLogin] = useState(false);
 
   async function signUp(userData) {
     const resp = await JoblyApi.register(userData);
@@ -24,17 +19,25 @@ function App() {
   }
 
   useEffect(() => {
+    if (!token) {
+      return;
+    }
     async function getUserInfo() {
       JoblyApi.token = token;
       const resp = await JoblyApi.getUser(jwt.decode(token).username);
       setCurrentUser(resp);
     }
-    token ? getUserInfo() : setCurrentUser(initialUser);
+    getUserInfo();
   }, [token]);
 
   async function loginUser(userData) {
-    const resp = await JoblyApi.login(userData);
-    setToken(resp);
+    try {
+      const resp = await JoblyApi.login(userData);
+      setToken(resp.token);
+      setIsInvalidLogin(false);
+    } catch (e) {
+      setIsInvalidLogin(true);
+    }
   }
 
   async function updateUser(formUsername, userData) {
@@ -51,6 +54,9 @@ function App() {
   }, [token]);
 
   async function applyForJob(id) {
+    if (!currentUser) {
+      return;
+    }
     const jobId = await JoblyApi.applyForJob(currentUser.username, id);
     setCurrentUser((currentUser) => ({
       ...currentUser,
@@ -70,14 +76,16 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <UserContext.Provider
-          value={{ token, currentUser, updateUser, applyForJob }}
+          value={{
+            token,
+            isInvalidLogin,
+            currentUser,
+            updateUser,
+            applyForJob,
+          }}
         >
           <NavBar logout={logout} />
-          <Routes
-            signUp={signUp}
-            loginUser={loginUser}
-            isAuthenticated={Boolean(token)}
-          />
+          <Routes signUp={signUp} loginUser={loginUser} />
         </UserContext.Provider>
       </BrowserRouter>
     </div>

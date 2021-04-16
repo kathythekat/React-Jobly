@@ -4,10 +4,9 @@ import UserContext from "./userContext";
 function JobCard({ job }) {
   const { currentUser, applyForJob } = useContext(UserContext);
   const { id, title, salary, equity, companyName } = job;
-  const isApplied =
-    !currentUser || !currentUser.applications
-      ? false
-      : currentUser.applications.includes(id);
+  const isApplied = !currentUser?.applications
+    ? false
+    : currentUser.applications.includes(id);
 
   async function handleClick(e) {
     await applyForJob(id);

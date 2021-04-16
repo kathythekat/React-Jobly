@@ -34,7 +34,7 @@ function JobsList() {
 
   return (
     <div className="m-3">
-      {token && (
+      {currentUser && (
         <div>
           <h1>Jobs</h1>
           <SearchBar addSearchTerm={addSearchTerm} />
@@ -43,7 +43,6 @@ function JobsList() {
           ))}
         </div>
       )}
-      {!token && <Redirect to="/login" />}
     </div>
   );
 }
