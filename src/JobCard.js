@@ -20,11 +20,13 @@ function JobCard({ job }) {
         <p className="card-text">Salary: {salary}</p>
         <p className="card-text">Equity:{equity}</p>
         {!isApplied && (
-          <button onClick={handleClick} className="btn btn-danger">
+          <button onClick={handleClick} className="btn btn-success">
             Apply
           </button>
         )}
-        {isApplied && <button className="btn btn-success">APPLIED</button>}
+        {isApplied && (
+          <button className="btn btn-outline-success">APPLIED</button>
+        )}
       </div>
     </div>
   );

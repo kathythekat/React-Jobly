@@ -42,7 +42,8 @@ function App() {
 
   async function updateUser(formUsername, userData) {
     const resp = await JoblyApi.update(formUsername, userData);
-    setCurrentUser(resp);
+    setCurrentUser((currentUser) => ({ ...currentUser, resp }));
+    console.log("UPDATED USER", currentUser);
   }
 
   useEffect(() => {
