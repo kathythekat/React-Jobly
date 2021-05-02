@@ -1,5 +1,5 @@
-import { useRef, useContext, useEffect, useState } from "react";
-import UserContext from "./userContext";
+import { useContext } from "react";
+import UserContext from "../userContext";
 
 function JobCard({ job }) {
   const { currentUser, applyForJob } = useContext(UserContext);

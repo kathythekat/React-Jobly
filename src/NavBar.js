@@ -4,7 +4,6 @@ import "./NavBar.css";
 import UserContext from "./userContext";
 
 function NavBar({ logout }) {
-  //also useContext for logout
   const { token } = useContext(UserContext);
   return (
     <>

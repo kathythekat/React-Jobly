@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import UserContext from "./userContext";
+import UserContext from "../userContext";
 
 function Profile() {
   const { currentUser, token, updateUser } = useContext(UserContext);
@@ -32,10 +32,11 @@ function Profile() {
 
   return (
     <div className="container mt-3">
+      <h1>Edit your profile</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="username">
-            <b>Username</b>
+            <b>USERNAME</b>
           </label>
           <p>{currentUser.username}</p>
         </div>
@@ -44,7 +45,7 @@ function Profile() {
           <input
             onChange={handleChange}
             type="text"
-            className="form-control"
+            className="form-control my-2"
             id="firstName"
             name="firstName"
             value={formData.firstName || currentUser.firstName}
@@ -55,7 +56,7 @@ function Profile() {
           <input
             onChange={handleChange}
             type="text"
-            className="form-control"
+            className="form-control my-2"
             id="lastName"
             name="lastName"
             value={formData.lastName || currentUser.lastName}
@@ -66,7 +67,7 @@ function Profile() {
           <input
             onChange={handleChange}
             type="text"
-            className="form-control"
+            className="form-control my-2"
             id="email"
             name="email"
             value={formData.email || currentUser.email}
@@ -77,7 +78,7 @@ function Profile() {
           <input
             onChange={handleChange}
             type="password"
-            className="form-control"
+            className="form-control my-2"
             id="password"
             name="password"
             value={formData.password}

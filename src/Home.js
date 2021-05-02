@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import UserContext from "./userContext";
 import JoblyApi from "./JoblyAPI";
-import JobCard from "./JobCard";
+import JobCard from "./Jobs/JobCard";
 
 function Home() {
   const { currentUser, token } = useContext(UserContext);
@@ -26,7 +26,7 @@ function Home() {
     <div className="my-3 d-flex justify-content-center">
       {token ? (
         <div className="container">
-          <h1>Welcome back, {currentUser?.firstName}!</h1>
+          <h1>Welcome back{", " + currentUser?.firstName}!</h1>
           <h4 className="my-3">Here are the jobs that you've applied to:</h4>
           <div className="row">
             {jobsAppliedTo.map((job) => (

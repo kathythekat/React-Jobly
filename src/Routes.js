@@ -1,11 +1,11 @@
 import { Route, Switch, Redirect } from "react-router-dom";
 import Home from "./Home";
-import CompanyList from "./CompanyList";
-import CompanyDetail from "./CompanyDetail";
-import JobsList from "./JobsList";
-import Login from "./Login";
-import Signup from "./Signup";
-import Profile from "./Profile";
+import CompanyList from "./Companies/CompanyList";
+import CompanyDetail from "./Companies/CompanyDetail";
+import JobsList from "./Jobs/JobsList";
+import Login from "./Forms/Login";
+import Signup from "./Forms/Signup";
+import Profile from "./Forms/Profile";
 import { useContext } from "react";
 import UserContext from "./userContext";
 

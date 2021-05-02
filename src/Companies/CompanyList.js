@@ -1,9 +1,8 @@
-import JoblyApi from "./JoblyAPI";
+import JoblyApi from "../JoblyAPI";
 import React, { useContext, useEffect, useState } from "react";
 import CompanyCard from "./CompanyCard";
-import SearchBar from "./SearchBar";
-import UserContext from "./userContext";
-import { Redirect } from "react-router";
+import SearchBar from "../Forms/SearchBar";
+import UserContext from "../userContext";
 
 function CompanyList() {
   const [companies, setCompanies] = useState([]);

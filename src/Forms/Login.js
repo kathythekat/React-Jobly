@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import RedAlert from "./RedAlert";
-import UserContext from "./userContext";
+import RedAlert from "../RedAlert";
+import UserContext from "../userContext";
 
 function Login({ loginUser }) {
   const { isInvalidLogin } = useContext(UserContext);

@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { Redirect, useParams } from "react-router-dom";
-import JoblyAPI from "./JoblyAPI";
-import JobCard from "./JobCard";
-import UserContext from "./userContext";
+import JoblyAPI from "../JoblyAPI";
+import JobCard from "../Jobs/JobCard";
+import UserContext from "../userContext";
 
 function CompanyDetail() {
   const { token } = useContext(UserContext);
