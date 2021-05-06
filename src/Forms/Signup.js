@@ -27,13 +27,15 @@ function Signup({ signUp }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="m-4" onSubmit={handleSubmit}>
       <div className="form-group">
-        <label htmlFor="username">Username</label>
+        <label htmlFor="username">
+          <h6>Username</h6>
+        </label>
         <input
           onChange={handleChange}
           type="text"
-          className="form-control"
+          className="form-control my-2"
           id="username"
           name="username"
           value={formData.username}
@@ -42,11 +44,13 @@ function Signup({ signUp }) {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">
+          <h6>Password</h6>
+        </label>
         <input
           onChange={handleChange}
           type="password"
-          className="form-control"
+          className="form-control my-2"
           id="password"
           name="password"
           value={formData.password}
@@ -54,11 +58,13 @@ function Signup({ signUp }) {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="firstName">First Name</label>
+        <label htmlFor="firstName">
+          <h6>First Name</h6>
+        </label>
         <input
           onChange={handleChange}
           type="text"
-          className="form-control"
+          className="form-control my-2"
           id="firstName"
           name="firstName"
           value={formData.firstName}
@@ -66,11 +72,13 @@ function Signup({ signUp }) {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="lastName">Last Name</label>
+        <label htmlFor="lastName">
+          <h6>Last Name</h6>
+        </label>
         <input
           onChange={handleChange}
           type="text"
-          className="form-control"
+          className="form-control my-2"
           id="lastName"
           name="lastName"
           value={formData.lastName}
@@ -78,11 +86,13 @@ function Signup({ signUp }) {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">
+          <h6>Email</h6>
+        </label>
         <input
           onChange={handleChange}
           type="text"
-          className="form-control"
+          className="form-control my-2"
           id="email"
           name="email"
           value={formData.email}

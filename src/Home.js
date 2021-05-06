@@ -2,6 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import UserContext from "./userContext";
 import JoblyApi from "./JoblyAPI";
 import JobCard from "./Jobs/JobCard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSuitcase } from "@fortawesome/free-solid-svg-icons";
+
+const jobIcon = <FontAwesomeIcon icon={faSuitcase} size="8x" />;
 
 function Home() {
   const { currentUser, token } = useContext(UserContext);
@@ -37,7 +41,10 @@ function Home() {
           </div>
         </div>
       ) : (
-        <h1>Welcome to Jobly!</h1>
+        <div>
+          <h1>Welcome to Jobly!</h1>
+          {jobIcon}
+        </div>
       )}
     </div>
   );
