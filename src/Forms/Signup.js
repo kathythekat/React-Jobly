@@ -27,8 +27,11 @@ function Signup({ signUp }) {
   }
 
   return (
-    <form className="m-4" onSubmit={handleSubmit}>
-      <div className="form-group">
+    <div className="container my-2">
+    <div className="h-100 d-flex flex-column justify-content-center align-items-center">
+    <h1>Signup</h1>
+    <form className="w-100 d-flex flex-column justify-content-center align-items-center" onSubmit={handleSubmit}>
+      <div className="form-group col-sm-6">
         <label htmlFor="username">
           <h6>Username</h6>
         </label>
@@ -43,7 +46,7 @@ function Signup({ signUp }) {
           placeholder="Enter username"
         />
       </div>
-      <div className="form-group">
+      <div className="form-group col-sm-6">
         <label htmlFor="password">
           <h6>Password</h6>
         </label>
@@ -57,7 +60,7 @@ function Signup({ signUp }) {
           placeholder="Password"
         />
       </div>
-      <div className="form-group">
+      <div className="form-group col-sm-6">
         <label htmlFor="firstName">
           <h6>First Name</h6>
         </label>
@@ -68,10 +71,10 @@ function Signup({ signUp }) {
           id="firstName"
           name="firstName"
           value={formData.firstName}
-          placeholder=""
+          placeholder="First Name"
         />
       </div>
-      <div className="form-group">
+      <div className="form-group col-sm-6">
         <label htmlFor="lastName">
           <h6>Last Name</h6>
         </label>
@@ -82,10 +85,10 @@ function Signup({ signUp }) {
           id="lastName"
           name="lastName"
           value={formData.lastName}
-          placeholder=""
+          placeholder="Last Name"
         />
       </div>
-      <div className="form-group">
+      <div className="form-group col-sm-6">
         <label htmlFor="email">
           <h6>Email</h6>
         </label>
@@ -96,7 +99,7 @@ function Signup({ signUp }) {
           id="email"
           name="email"
           value={formData.email}
-          placeholder=""
+          placeholder="Email"
         />
       </div>
 
@@ -104,6 +107,8 @@ function Signup({ signUp }) {
         Submit
       </button>
     </form>
+    </div>
+    </div>
   );
 }
 

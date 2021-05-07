@@ -2,14 +2,18 @@ import { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import "./NavBar.css";
 import UserContext from "./userContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSuitcase } from "@fortawesome/free-solid-svg-icons";
+
+const jobIcon = <FontAwesomeIcon icon={faSuitcase} size="2x" />;
 
 function NavBar({ logout }) {
   const { token } = useContext(UserContext);
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-warning">
-        <Link to="/" className="navbar-brand mr-auto">
-          Jobly
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <Link to="/" className="navbar-nav nav-brand text-light mr-auto">
+          {jobIcon}
         </Link>
         {token && (
           <nav className="navbar-expand navbar" id="navbarNav">

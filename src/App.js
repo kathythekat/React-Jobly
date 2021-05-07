@@ -74,7 +74,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+  <div className="container-fluid mx-0 px-0 h-100">
       <BrowserRouter>
         <UserContext.Provider
           value={{

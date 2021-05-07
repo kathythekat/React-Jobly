@@ -2,10 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import UserContext from "./userContext";
 import JoblyApi from "./JoblyAPI";
 import JobCard from "./Jobs/JobCard";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSuitcase } from "@fortawesome/free-solid-svg-icons";
-
-const jobIcon = <FontAwesomeIcon icon={faSuitcase} size="8x" />;
+import './Home.css'
 
 function Home() {
   const { currentUser, token } = useContext(UserContext);
@@ -27,11 +24,12 @@ function Home() {
   }, [jobApps]);
 
   return (
-    <div className="my-3 d-flex justify-content-center">
+    <div className="Home h-100 d-flex flex-column justify-content-center align-items-center"
+    >
       {token ? (
         <div className="container">
-          <h1>Welcome back{", " + currentUser?.firstName}!</h1>
-          <h4 className="my-3">Here are the jobs that you've applied to:</h4>
+          <h1>Welcome{", " + currentUser?.firstName}!</h1>
+          <h4 className="my-5">Here are the jobs that you've applied to:</h4>
           <div className="row">
             {jobsAppliedTo.map((job) => (
               <div className="col-md-3">
@@ -41,10 +39,10 @@ function Home() {
           </div>
         </div>
       ) : (
-        <div>
+          <div className="text-light d-flex flex-column justify-content-center align-items-center">
           <h1>Welcome to Jobly!</h1>
-          {jobIcon}
-        </div>
+          <h3>Your dream career starts here.</h3>
+          </div>
       )}
     </div>
   );

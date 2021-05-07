@@ -23,10 +23,12 @@ function Login({ loginUser }) {
   }
 
   return (
-    <div>
+    <div className="container my-2">
+    <div className="h-100 d-flex flex-column justify-content-center align-items-center">
+    <h1>Login</h1>
       {isInvalidLogin && <RedAlert />}
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
+      <form className="w-100 d-flex flex-column justify-content-center align-items-center" onSubmit={handleSubmit}>
+        <div className="form-group col-sm-4 my-2">
           <label htmlFor="username">Username</label>
           <input
             onChange={handleChange}
@@ -39,7 +41,7 @@ function Login({ loginUser }) {
             placeholder="Enter username"
           />
         </div>
-        <div className="form-group">
+        <div className="form-group col-sm-4 my-2">
           <label htmlFor="password">Password</label>
           <input
             onChange={handleChange}
@@ -56,6 +58,7 @@ function Login({ loginUser }) {
           Submit
         </button>
       </form>
+    </div>
     </div>
   );
 }
