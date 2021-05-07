@@ -32,9 +32,9 @@ function JobsList() {
   if (!jobs.length) return <div>Loading....</div>;
 
   return (
-    <div className="m-3">
+    <div >
       {currentUser && (
-        <div>
+        <div className="d-flex flex-column justify-content-center align-items-center">
           <h1>Jobs</h1>
           <SearchBar addSearchTerm={addSearchTerm} />
           {jobs.map((job) => (

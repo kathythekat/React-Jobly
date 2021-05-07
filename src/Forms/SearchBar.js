@@ -15,14 +15,14 @@ function SearchBar({ addSearchTerm }) {
 
   return (
     <form className="my-2 d-flex" onSubmit={handleSubmit}>
-      <div className="form-group mb-2 col-md-5">
+      <div className="w-100 form-group mb-2 col-lg-6">
         <input
           type="text"
           className="form-control"
           id="search"
           name="searchTerm"
           value={formData.searchTerm}
-          placeholder="Enter a search term"
+          placeholder="What are you looking for?"
           onChange={handleChange}
         />
       </div>

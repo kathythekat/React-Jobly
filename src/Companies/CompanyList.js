@@ -31,10 +31,9 @@ function CompanyList() {
   }, [searchTerm]);
 
   if (!companies.length) return <div>Loading....</div>;
-  console.log("Inside companies!", token.token);
   return (
     <div>
-      <div className="m-3">
+      <div className="d-flex flex-column justify-content-center align-items-center">
         <h1>Companies</h1>
         <SearchBar addSearchTerm={addSearchTerm} />
         {companies.map((company) => (

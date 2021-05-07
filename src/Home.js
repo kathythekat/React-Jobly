@@ -29,10 +29,10 @@ function Home() {
     className="Home h-100 d-flex flex-column justify-content-center align-items-center"
     >
       {token ? (
-        <div className="container">
+        <div className="container text-light d-flex flex-column justify-content-center align-items-center">
           <h1>Welcome{", " + currentUser?.firstName}!</h1>
-          <h4 className="my-5">Here are the jobs that you've applied to:</h4>
-          <div className="row">
+          <h4 className="my-4">Here are the jobs that you've applied to:</h4>
+          <div className="text-dark row">
             {jobsAppliedTo.map((job) => (
               <div className="col-md-3">
                 <JobCard job={job} />
