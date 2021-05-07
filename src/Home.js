@@ -26,8 +26,7 @@ function Home() {
 
   return (
     <div 
-    className="Home w-100 h-100 d-flex flex-column justify-content-center align-items-center"
-    style={{backgroundImage:`url(${cityscape})`}}
+    className="Home h-100 d-flex flex-column justify-content-center align-items-center"
     >
       {token ? (
         <div className="container">
