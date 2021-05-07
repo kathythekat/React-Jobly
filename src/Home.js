@@ -3,6 +3,7 @@ import UserContext from "./userContext";
 import JoblyApi from "./JoblyAPI";
 import JobCard from "./Jobs/JobCard";
 import './Home.css'
+import cityscape from './images/cityscape.jpg'
 
 function Home() {
   const { currentUser, token } = useContext(UserContext);
@@ -24,7 +25,9 @@ function Home() {
   }, [jobApps]);
 
   return (
-    <div className="Home h-100 d-flex flex-column justify-content-center align-items-center"
+    <div 
+    className="Home w-100 h-100 d-flex flex-column justify-content-center align-items-center"
+    style={{backgroundImage:`url(${cityscape})`}}
     >
       {token ? (
         <div className="container">
