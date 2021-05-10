@@ -52,7 +52,6 @@ class JoblyApi {
       : await this.request("jobs");
     return res.jobs;
   }
-  //make similar change as getAllCompanies to getAllJobs
 
   static async getJob(id) {
     let res = await this.request(`jobs/${id}`);
@@ -83,10 +82,8 @@ class JoblyApi {
     let res = await this.request(`users/${username}/jobs/${jobId}`, {}, "post");
     return res.applied;
   }
-  // obviously, you'll add a lot here ...
 }
 
-// for now, put token ("testuser" / "password" on class)
 JoblyApi.token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
   "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
