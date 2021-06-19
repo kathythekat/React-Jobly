@@ -24,7 +24,6 @@ function CompanyList() {
   useEffect(() => {
     async function getCompanyList() {
       const companyList = await JoblyApi.getAllCompanies(searchTerm);
-      console.log("COMPANY LIST", companyList);
       setCompanies(companyList);
     }
     if (searchTerm) getCompanyList();

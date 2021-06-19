@@ -43,7 +43,6 @@ function App() {
   async function updateUser(formUsername, userData) {
     const resp = await JoblyApi.update(formUsername, userData);
     setCurrentUser((currentUser) => ({ ...currentUser, resp }));
-    console.log("UPDATED USER", currentUser);
   }
 
   useEffect(() => {
@@ -64,13 +63,13 @@ function App() {
       applications: [...currentUser.applications, jobId],
     }));
   }
-  
+
   function logout() {
     setToken(null);
   }
 
   return (
-  <div className="container-fluid mx-0 px-0 h-100">
+    <div className="container-fluid mx-0 px-0 h-100">
       <BrowserRouter>
         <UserContext.Provider
           value={{

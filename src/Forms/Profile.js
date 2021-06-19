@@ -26,10 +26,6 @@ function Profile() {
     history.push("/");
   }
 
-  console.log("current user PROFILE", currentUser);
-  console.log("token PROFILE", token);
-  console.log("localstorage PROFILE!", localStorage.getItem("userToken"));
-
   return (
     <div className="container mt-3">
       <h1>Edit your profile</h1>
