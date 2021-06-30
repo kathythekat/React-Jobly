@@ -7,7 +7,7 @@ import UserContext from "../userContext";
 function JobsList() {
   const [jobs, setJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const { token, currentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
   useEffect(() => {
     async function getJobsList() {
@@ -32,7 +32,7 @@ function JobsList() {
   if (!jobs.length) return <div>Loading....</div>;
 
   return (
-    <div >
+    <div>
       {currentUser && (
         <div className="d-flex flex-column justify-content-center align-items-center">
           <h1>Jobs</h1>

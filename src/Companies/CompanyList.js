@@ -1,18 +1,18 @@
 import JoblyApi from "../JoblyAPI";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import CompanyCard from "./CompanyCard";
 import SearchBar from "../Forms/SearchBar";
-import UserContext from "../userContext";
 
 function CompanyList() {
   const [companies, setCompanies] = useState([]);
+  const [filteredCompanies, setFilteredCompanies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const { token } = useContext(UserContext);
 
   useEffect(() => {
     async function getCompanyList() {
       const companyList = await JoblyApi.getAllCompanies();
       setCompanies(companyList);
+      setFilteredCompanies(companyList);
     }
     getCompanyList();
   }, []);
@@ -22,12 +22,15 @@ function CompanyList() {
   }
 
   useEffect(() => {
-    async function getCompanyList() {
-      const companyList = await JoblyApi.getAllCompanies(searchTerm);
-      setCompanies(companyList);
+    async function filterCompanies() {
+      const filtered = companies.filter((company) =>
+        company.name.toUpperCase().includes(searchTerm)
+      );
+      setFilteredCompanies(filtered);
     }
-    if (searchTerm) getCompanyList();
-  }, [searchTerm]);
+    if (searchTerm) filterCompanies();
+    else if (!searchTerm) setFilteredCompanies(companies);
+  }, [searchTerm, companies]);
 
   if (!companies.length) return <div>Loading....</div>;
   return (
@@ -35,7 +38,7 @@ function CompanyList() {
       <div className="d-flex flex-column justify-content-center align-items-center">
         <h1>Companies</h1>
         <SearchBar addSearchTerm={addSearchTerm} />
-        {companies.map((company) => (
+        {filteredCompanies.map((company) => (
           <div className="col-sm-5 mt-3" key={company.handle}>
             <CompanyCard company={company} />
           </div>

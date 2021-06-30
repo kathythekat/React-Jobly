@@ -15,7 +15,7 @@ function CompanyDetail() {
       setCompanyJobs(companyRes.jobs);
     }
     getCompany();
-  }, []);
+  }, [handle]);
 
   if (!companyJobs.length) return <div>Loading....</div>;
 
