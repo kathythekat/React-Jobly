@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import UserContext from "./userContext";
 import JoblyApi from "./JoblyAPI";
 import JobCard from "./Jobs/JobCard";
-import './Home.css'
-import cityscape from './images/cityscape.jpg'
+import "./Home.css";
+import cityscape from "./images/cityscape.jpg";
 
 function Home() {
   const { currentUser, token } = useContext(UserContext);
@@ -25,26 +25,24 @@ function Home() {
   }, [jobApps]);
 
   return (
-    <div 
-    className="Home h-100 d-flex flex-column justify-content-center align-items-center"
-    >
+    <div className="Home h-100 d-flex flex-column justify-content-center align-items-center">
       {token ? (
         <div className="container text-light d-flex flex-column justify-content-center align-items-center">
           <h1>Welcome{", " + currentUser?.firstName}!</h1>
-          <h4 className="my-4">Here are the jobs that you've applied to:</h4>
+          {/* <h4 className="my-4">Here are the jobs that you've applied to:</h4>
           <div className="text-dark row">
             {jobsAppliedTo.map((job) => (
               <div className="col-md-3">
                 <JobCard job={job} />
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       ) : (
-          <div className="text-light d-flex flex-column justify-content-center align-items-center">
+        <div className="text-light d-flex flex-column justify-content-center align-items-center">
           <h1>Welcome to Jobly!</h1>
           <h3>Your dream career starts here.</h3>
-          </div>
+        </div>
       )}
     </div>
   );
