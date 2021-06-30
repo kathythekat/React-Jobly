@@ -29,14 +29,6 @@ function Home() {
       {token ? (
         <div className="container text-light d-flex flex-column justify-content-center align-items-center">
           <h1>Welcome{", " + currentUser?.firstName}!</h1>
-          {/* <h4 className="my-4">Here are the jobs that you've applied to:</h4>
-          <div className="text-dark row">
-            {jobsAppliedTo.map((job) => (
-              <div className="col-md-3">
-                <JobCard job={job} />
-              </div>
-            ))}
-          </div> */}
         </div>
       ) : (
         <div className="text-light d-flex flex-column justify-content-center align-items-center">
